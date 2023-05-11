@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<img src="s1.png">
+<img src="s2.png">
+<img src="s3.png">
+<img src="s4.png">
+<img src="s5.png">
+<img src="s6.png">
+
+<script>
+    snowflakes = document.getElementsByTagName('img');
+
+    for (let i = 0; i < snowflakes.length; i++) {
+        snowflakes[i].style.position = "absolute";
+        snowflakes[i].style.top = "-200px";
+        snowflakes[i].style.width = "150px";
+        snowflakes[i].style.left = Math.random()*1000 + "px";
+
+        setInterval(moveSnowflakes,Math.random()*10 + 1, snowflakes[i]);
+
+    }
+
+    function moveSnowflakes(snowflake){
+        var pos = parseFloat(snowflake.style.top.split("px")[0])
+        snowflake.style.top = pos+1+"px";
+        if(pos>1000) {
+            snowflake.style.top = "-200px";
+            snowflake.style.left = Math.random()*1000+"px";
+        }
+    }
+
+
+
+</script>
+
+</body>
+</html>

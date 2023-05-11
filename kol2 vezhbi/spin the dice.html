@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            border: 1px solid black;
+            font-size: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<input type="number" id="number"> <button onclick="roll()">Roll</button><br><br>
+
+<div id="number1">1</div>
+<div id="number2">1</div><br><br>
+<button onclick="history()">History to json</button>
+
+<script>
+
+    var jsonHistory = [];
+    function roll(){
+        ourGuess = document.getElementById('number').value;
+
+        dice1 = document.getElementById('number1');
+        dice2 = document.getElementById('number2');
+
+        howLongToSpin = Math.floor(Math.random()*3+1);
+
+        interval = setInterval(rollTheDice, 1000)
+
+
+        function rollTheDice(){
+            if(howLongToSpin!==0){
+                dice1.innerHTML = Math.floor(Math.random()*(6)+1);
+                dice2.innerHTML = Math.floor(Math.random()*(6)+1);
+            }
+            else {
+                clearInterval(interval);
+                var putMeInHistory = {"input": ourGuess, "dices": "[" + dice1.innerHTML + "," + dice2.innerHTML + "]"}
+                jsonHistory.push(JSON.stringify(putMeInHistory));
+
+                if(parseInt(dice1.innerHTML) + parseInt(dice2.innerHTML)===parseInt(ourGuess)){
+                    document.getElementById('number').style.backgroundColor = "green";
+                }
+                else
+                    document.getElementById('number').style.backgroundColor = 'red';
+
+            }
+
+            howLongToSpin--;
+
+        }
+    }
+
+    function history(){
+        console.log(jsonHistory);
+    }
+</script>
+
+</body>
+</html>

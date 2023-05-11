@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      input,div {
+        border: black solid 3px;
+        height: 120px;
+        width: 120px;
+        font-size: 120px;
+        text-align: center;
+        margin: 2px;
+        color: black;
+      }
+    </style>
+
+</head>
+<body>
+<input type="" id="bukva1"><input id="bukva2"><input id="bukva3"><input id="bukva4"><input id="bukva5">
+<section id="addHere"></section>
+
+<script>
+  let data = '["bukva", "jazik", "vokal", "misla", "tablo"]'
+  var zborovi = JSON.parse(data);
+
+  chosenWord = zborovi[Math.floor(Math.random() * (5))]
+
+  console.log(chosenWord);
+  addEventListener('keypress', function (event){
+    const key = event.key;
+    if(key==="Enter")
+    checkLetters()
+  })
+
+
+  function checkLetters(){
+    letter1 = document.getElementById('bukva1').value;
+    letter2 = document.getElementById('bukva2').value;
+    letter3 = document.getElementById('bukva3').value;
+    letter4 = document.getElementById('bukva4').value;
+    letter5 = document.getElementById('bukva5').value;
+
+    arrayOfTheGuesses = [];
+
+    arrayOfTheGuesses.push(letter1);
+    arrayOfTheGuesses.push(letter2);
+    arrayOfTheGuesses.push(letter3);
+    arrayOfTheGuesses.push(letter4);
+    arrayOfTheGuesses.push(letter5);
+
+    arrOfDivs = [];
+
+    for (var i=0; i<5; i++) {
+        arrOfDivs.push(document.createElement('span'));
+        arrOfDivs[i].innerHTML = arrayOfTheGuesses[i];
+        arrOfDivs[i].style.width = "120px"
+        arrOfDivs[i].style.display = "inline-block"
+        arrOfDivs[i].style.height = "120px";
+        arrOfDivs[i].style.border = "black solid 3px"
+        arrOfDivs[i].style.fontSize = "120px";
+        arrOfDivs[i].style.margin = "2px";
+        arrOfDivs[i].style.textAlign = "center";
+    }
+
+    var guessed = 0;
+    for (i=0; i<5; i++){
+        if(chosenWord[i] === arrayOfTheGuesses[i]) {
+            arrOfDivs[i].style.backgroundColor = "green";
+            guessed++;
+        }
+    }
+
+    for (i=0; i<5; i++){
+        if(arrOfDivs[i].style.backgroundColor!=="green"){
+            for (j=0; j<5; j++){
+                if(arrayOfTheGuesses[i]===chosenWord[j]){
+                    arrOfDivs[i].style.backgroundColor = "yellow";
+                    break;
+                }
+                else
+                    arrOfDivs[i].style.backgroundColor = "white";
+            }
+        }
+    }
+
+    mainDiv = document.createElement('span');
+    for (var i=0; i<5; i++){
+        mainDiv.appendChild(arrOfDivs[i]);
+    }
+    document.getElementById('addHere').appendChild(mainDiv).append(document.createElement('br'));
+
+      if(guessed===5) {
+          document.body.style.backgroundColor = "lime";
+          alert("Pobedivte!");
+      }
+
+      letter1 = document.getElementById('bukva1').value="";
+      letter2 = document.getElementById('bukva2').value="";
+      letter3 = document.getElementById('bukva3').value="";
+      letter4 = document.getElementById('bukva4').value="";
+      letter5 = document.getElementById('bukva5').value="";
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="randomLetters"></p>
+<input id="guess"> <button id="closeMe" onclick="check()">Провери</button><br>
+<p>Преостанато време <span id="time">60</span> секунди. Погодоци <span id="guesses">0</span>.</p>
+
+<script>
+    const parseMe = '["jas", "ti", "toj", "taa", "nie", "vie", "tie"]';
+    var words = JSON.parse(parseMe);
+
+    time = document.getElementById('time');
+    interval = setInterval(lowerTheTime, 1000);
+
+    var allTheLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v','w', 'x', 'y', 'z'];
+    randomsHere = document.getElementById('randomLetters');
+
+    for (var i=0; i<10; i++){
+        letterNumber = Math.floor(Math.random()*26)
+        randomsHere.innerHTML+=(allTheLetters[letterNumber] + " ");
+    }
+
+    function check() {
+        guess = document.getElementById('guess').value;
+
+        if(hasIt(guess)===true) {
+            for (let i = 0; i < words.length; i++) {
+                if (guess === words[i]) {
+                    document.getElementById('guesses').innerHTML = parseInt(document.getElementById('guesses').innerHTML) + 1;
+
+                    break;
+                }
+            }
+        }
+        else
+            alert("Vnesovte bukva shto ja nema vo dadenite bukvi")
+    }
+
+    function hasIt(guess) {
+        allTheRandoms = document.getElementById('randomLetters').innerHTML;
+
+        for (i = 0; i < guess.length; i++) {
+            if (!allTheRandoms.includes(guess[i]))
+                return false;
+        }
+        return true;
+    }
+
+    function lowerTheTime(){
+        time.innerHTML = parseInt(time.innerHTML)-1;
+        if(time.innerHTML==='0'){
+            document.getElementById('closeMe').disabled = "true";
+            clearInterval(interval);
+        }
+    }
+
+</script>
+
+</body>
+</html>

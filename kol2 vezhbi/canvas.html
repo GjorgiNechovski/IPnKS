@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id='color' type="color">
+<button onclick="draw()">Draw</button><br>
+X: <input id="X"><br>
+Y: <input id="Y"><br>
+Size: <input id="size">
+<button onclick="changeColor()">Change Color of all</button>
+
+<script>
+
+    canvas = document.createElement('div');
+    canvas.style.border = "5px black solid";
+    canvas.style.width = "1000px";
+    canvas.style.height = "500px";
+    canvas.style.left = "200px";
+    canvas.style.top = "100px";
+    canvas.style.position = "absolute";
+    document.body.append(canvas);
+
+    function changeColor(){
+        X = document.getElementById('X').value;
+        Y = document.getElementById('Y').value;
+        size = document.getElementById('size').value;
+        color = document.getElementById('color').value;
+
+        console.log(color);
+
+        createCircle(X, Y,size,color);
+        createSquare(X,Y,size,color);
+    }
+
+
+    function createCircle(X, Y,size,color){
+        addDiv = document.createElement('div');
+        addDiv.style.width = size + "px";
+        addDiv.style.height = size + "px";
+        addDiv.style.backgroundColor = color;
+        addDiv.style.border = "1px black solid";
+        addDiv.style.borderRadius = "1000px"
+        addDiv.style.position = "absolute";
+        addDiv.style.left = X + "px";
+        addDiv.style.top = Y + "px";
+        addDiv.setAttribute('class', 'shape');
+
+
+        canvas.appendChild(addDiv);
+    }
+
+    function createSquare(X,Y,size,color){
+        addDiv = document.createElement('div');
+        addDiv.style.width = size + "px";
+        addDiv.style.height = size + "px";
+        addDiv.style.backgroundColor = color;
+        addDiv.style.border = "1px black solid";
+        addDiv.style.position = "absolute";
+        addDiv.style.left = X + "px";
+        addDiv.style.top = Y + "px";
+        addDiv.setAttribute('class', 'shape');
+
+        canvas.appendChild(addDiv);
+    }
+
+    ime = document.getElementById('ime').value;
+    prezime = document.getElementById('prezime').value;
+    id = document.getElementById('id').value;
+
+    toParse = [{"ime": ime, "prezime": prezime, "id": id}]
+    let parsedVrednost = JSON.stringify(toParse);
+
+
+
+</script>
+
+
+</body>
+</html>

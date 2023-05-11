@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>Colors</label><br><br>
+<input id="colors"><br><br>
+<label>Delimiter</label><br><br>
+<input id="delimiter"><br><br>
+<button style="display: block;" onclick="draw()">Draw</button>
+
+<script>
+  var colors=[];
+  var useMe;
+
+  function draw() {
+    var delimiter = document.getElementById('delimiter').value;
+    if(delimiter.length===0)
+      delimiter = ' ';
+    useMe = delimiter;
+    allInOne = document.getElementById('colors').value;
+    colors = allInOne.split(delimiter);
+
+    for (i=0; i<colors.length; i++)
+      document.body.innerHTML+=
+              "<div style='background-color: " + colors[i] + "; width: 150px; height: 150px; display: inline-block;' onclick='remove(this)'></div>"
+
+    document.getElementById('colors').value = allInOne;
+    document.getElementById('delimiter').value = delimiter;
+  }
+
+  function remove(element){
+    element.remove();
+
+    var temp = [];
+    for (i=0; i<colors.length; i++){
+      if(colors[i] === element.style.backgroundColor)
+        continue;
+      temp.push(colors[i]);
+
+    }
+
+    colors = temp;
+    here = document.getElementById('colors');
+
+    here.value = "";
+    for (i=0; i<colors[i].length; i++)
+      here.value += colors[i] + useMe;
+
+  }
+</script>
+</body>
+</html>

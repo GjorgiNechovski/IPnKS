@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>Red: </label><input type="number" id="red"><br>
+<label>Green: </label><input type="number" id="green"><br>
+<label>Blue: </label><input type="number" id="blue"><br><br>
+
+<input id="start" name="where" type="radio"> Start<br>
+<input id="end" name="where" type="radio"> End <br><br>
+<label>Text: </label><input id="text"><br><br>
+<button onclick="add()">Add</button> <button onclick="remove()">Delete</button><br><br>
+<div id="addHere"> </div>
+
+<script>
+  function add() {
+    addHere = document.getElementById('addHere');
+
+    colors = [];
+    colors.push(document.getElementById('red').value);
+    colors.push(document.getElementById('green').value);
+    colors.push(document.getElementById('blue').value);
+
+    for (i = 0; i < colors.length; i++)
+      colors[i] = parseInt(colors[i]);
+
+    text = document.createElement('p');
+    text.innerHTML = document.getElementById('text').value;
+
+    text.style.color = "rgb(" + colors[0] + ","+ colors[1] + "," + colors[2] + ")";
+
+    if(document.getElementById('end').checked)
+      addHere.appendChild(text);
+
+    else
+      addHere.prepend(text);
+  }
+
+  function remove(){
+    if (document.getElementById('start').checked){
+      removeHere = document.getElementById('addHere');
+
+      removeHere.removeChild(removeHere.firstChild);
+    }
+    else{
+      removeHere = document.getElementById('addHere');
+
+      removeHere.removeChild(removeHere.lastChild);
+    }
+  }
+
+
+</script>
+
+</body>
+</html>

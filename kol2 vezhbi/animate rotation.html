@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    div{
+      height: 100px;
+      width: 100px;
+      background: yellow;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+X:<input id="moveX"><br>
+Y:<input id="moveY"><br>
+Rotacija:<input id="rotation"><br>
+<button onclick="makeMeHistory()">To Json</button><br>
+<button onclick="moveMe()">Animate</button><br><br>
+<div id="moveMe"></div>
+
+<script>
+  istorija = [];
+  function moveMe(){
+     let square = document.getElementById('moveMe');
+
+     let X = parseInt(document.getElementById('moveX').value);
+     let Y = parseInt(document.getElementById('moveY').value);
+     let rotation = parseInt(document.getElementById('rotation').value);
+
+     let originalX = parseInt(square.style.left.split("px")[0]);
+     if(isNaN(originalX)) {
+       square.style.left = "10px"
+       originalX = 120;
+     }
+
+     let originalY = parseInt(square.style.top.split("px")[0]);
+     if(isNaN(originalY)) {
+       square.style.top = "120px"
+       originalY = 10
+     }
+
+     let originalRotation = parseInt(square.style.rotate.split("deg")[0]);
+     if(isNaN(originalRotation)){
+       square.style.rotate = "0deg";
+       originalRotation = 0;
+     }
+
+     let neededX = parseInt(X + originalX);
+     let neededY = parseInt(Y + originalY);
+     let neededRotation = parseInt(rotation + originalRotation);
+
+     interval = setInterval(move, 1)
+
+     function move(){
+       currentX = parseInt(square.style.left.split("px")[0]);
+       currentY = parseInt(square.style.top.split("px")[0]);
+       currentRotation = parseInt(square.style.rotate.split("deg")[0]);
+
+       if(currentX<neededX)
+         square.style.left = currentX + 1 +"px";
+       else if(currentX>neededX)
+         square.style.left = currentX - 1 + "px";
+
+       if(currentY<neededY)
+         square.style.top = currentY + 1 + "px";
+       else if(currentY>neededY)
+         square.style.top = currentY -1 +"px";
+
+       if(currentRotation<neededRotation)
+         square.style.rotate = currentRotation + 1 + "deg";
+       else if(currentRotation>neededRotation)
+         square.style.rotate = currentRotation - 1 + "deg";
+
+       if(currentY===neededY && currentX===neededX && currentRotation===neededRotation)
+         clearInterval(interval);
+     }
+
+  }
+
+  function makeMeHistory(){
+    let X = parseInt(document.getElementById('moveX').value);
+    let Y = parseInt(document.getElementById('moveY').value);
+    let rotation = parseInt(document.getElementById('rotation').value);
+
+    let currentValues = {"X": X, "Y": Y, "Rotation": rotation};
+    istorija.push(JSON.stringify(currentValues));
+    console.log(istorija);
+
+  }
+</script>
+
+</body>
+</html>
