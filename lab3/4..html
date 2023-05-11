@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>Naslov na kniga: </label><input id="naslov"><br>
+<label>Avtor na kniga: </label><input id="avtor"><br>
+<label>Dali e prochitana knigata?</label>
+<select id="chitano">
+   <option>true</option>
+   <option>false</option>
+</select><br>
+
+<button onclick="makeList()">Add to list</button>
+
+<script>
+
+  function Book(naslov,avtor,chitano) {
+    this.naslov = naslov;
+    this.avtor = avtor;
+    this.chitano = chitano;
+
+    this.text = function (){
+      text = "";
+      if(chitano==="true")
+        text+="You already read ";
+      else
+        text+="You still need to read ";
+
+      text+= naslov + "by " + avtor;
+      return text;
+    }
+  }
+
+  var lista = [];
+
+  function makeList(){
+
+    naslov = document.getElementById("naslov").value;
+    avtor = document.getElementById("avtor").value;
+    chitano = document.getElementById("chitano").value;
+
+    temp = new Book(naslov,avtor,chitano);
+
+    alert(temp.text());
+
+    document.getElementById("naslov").value = "";
+    document.getElementById("avtor").value = "";
+
+  }
+</script>
+</body>
+</html>

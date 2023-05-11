@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        function showImagine() {
+            arr = new Array(3);
+
+            arr[0] = "https://designmodo.com/wp-content/uploads/2014/07/free-photos.jpg"
+            arr[1] = "https://farm5.staticflickr.com/4060/4567292488_5d3f4b05f6_z.jpg"
+            arr[2] = "https://wallup.net/wp-content/uploads/2017/03/28/401266-landscape-road-forest-748x421.jpg"
+
+            var broj = Math.floor(Math.random()*100);
+            image = new Image()
+
+            console.log(broj)
+            if(broj<33)
+                image.src=arr[0];
+            else if(broj<66)
+                image.src=arr[1];
+            else
+                image.src = arr[2];
+
+            var divot = document.getElementById("showPic")
+            divot.innerHTML=image.outerHTML;
+        }
+    </script>
+</head>
+<body>
+<button id="slika" onclick="showImagine()">Klik za slika</button>
+<div id="showPic">
+
+</div>
+</body>
+</html>

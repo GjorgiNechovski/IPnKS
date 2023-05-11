@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        table,tr,td,th{
+            border: 1px black solid;
+            padding: 5px;
+            border-collapse: collapse;
+        }
+        input, select{
+            width: 180px;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <label>Име: </label><input id="name"><br>
+    <label>Презиме: </label><input id="surname"><br>
+    <label>Индекс: </label><input id="index"><br>
+    <label>Предмет: </label><input id="subject"><br>
+    <label>Оцена: </label>
+    <select id="grade">
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+    </select><br>
+    <button onclick="doSomething()">Внеси</button><br><br>
+</div>
+<table id="students">
+    <tr>
+        <th>Име</th>
+        <th>Презиме</th>
+        <th>Индекс</th>
+        <th>Предмет</th>
+        <th>Оцена</th>
+    </tr>
+</table>
+
+<script>
+    function Student(name,surname,index,subject,grade){
+        this.name = name;
+        this.surname = surname;
+        this.subject = subject;
+        this.grade = grade;
+    }
+
+    var lista = [];
+    var countOfStudents = 0;
+
+    function doSomething(){
+        studentName = document.getElementById('name').value;
+        surname = document.getElementById('surname').value;
+        index = document.getElementById('index').value;
+        subject = document.getElementById('subject').value;
+        grade = document.getElementById('grade').value;
+
+        lista[countOfStudents++] = new Student(studentName,surname,index,subject,grade);
+
+        table = document.getElementById('students').insertRow();
+        table.insertCell().innerHTML = studentName;
+        table.insertCell().innerHTML = surname;
+        table.insertCell().innerHTML = index;
+        table.insertCell().innerHTML = subject;
+        table.insertCell().innerHTML = grade;
+
+        document.getElementById('name').value = " ";
+        document.getElementById('surname').value= " ";
+        document.getElementById('index').value= " ";
+        document.getElementById('subject').value= " ";
+
+    }
+</script>
+
+</body>
+</html>

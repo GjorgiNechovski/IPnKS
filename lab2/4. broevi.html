@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <input id="Rnumber1"> <input id="Inumber1">i<br><br>
+  <input id="Rnumber2"> <input id="Inumber2">i<br>
+  <button onclick="soberi()">Add</button><br>
+  <input disabled id="Rrezultat"> <input disabled id="Irezultat">i
+</div>
+
+<script>
+  function soberi(){
+    var R = parseInt(document.getElementById("Rnumber1").value) + parseInt(document.getElementById("Rnumber2").value);
+    var I = parseInt(document.getElementById("Inumber1").value) + parseInt(document.getElementById("Inumber2").value);
+
+    document.getElementById("Rrezultat").value = R;
+    document.getElementById("Irezultat").value = I;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    proizvod =1;
+    for (i=0; i<3; i++){
+        vnes = prompt("Vnesi broj")
+        vnes = parseInt(vnes)
+
+        if(isNaN(vnes)){
+            alert("Vnesi broj!")
+            i--;
+        }
+        else{
+            proizvod= proizvod*vnes;
+        }
+    }
+
+    if(proizvod>0)
+        document.write("Znakot e +")
+    else if(proizvod<0)
+        document.write("Znakot e -")
+    else
+        document.write("Imate vneseno 0")
+</script>
+</body>
+</html>

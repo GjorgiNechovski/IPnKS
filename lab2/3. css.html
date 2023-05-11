@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>About Me</title>
+
+</head>
+<body>
+<h1>About Me</h1>
+<ul>
+    <li>Name: <span id="name"></span>
+    <li>Index: <span id="index"></span>
+    <li>Hometown: <span id="hometown"></span>
+</ul>
+
+<script type="text/javascript">
+    document.body.style.fontFamily='Arial';
+
+    document.getElementById('name').innerHTML = 'Gjorgi';
+    document.getElementById('index').innerHTML = '211177';
+    document.getElementById('hometown').innerHTML = 'Resen'
+
+    redici = document.getElementsByTagName('li');
+    for (i = 0;i <redici.length; i++)
+        redici[i].style.background="red";
+</script>
+
+</body>
+</html>

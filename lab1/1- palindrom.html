@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var number = prompt("Vnesete broj");
+    number = parseInt(number);
+
+    if(isNaN(number))
+        document.write("Ne vnesovte broj");
+    else{
+        if(number%10 === Math.floor(number/100))
+            document.write("Brojot e palindrom");
+        else
+            document.write("Brojot ne e palindrom");
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>Items: </label><br><input id="items"><br><br>
+<label>Type: </label>
+<select id="type">
+    <option>Radio button</option>
+    <option>Check box</option>
+</select>
+<button onclick="doSomething()">Прикажи</button>
+<div id="addHere"></div>
+<script>
+    function doSomething(){
+        var elements = document.getElementById('items').value;
+        var parts = elements.split(',');
+        var type = document.getElementById('type').value;
+        var here = document.getElementById('addHere');
+        here.innerHTML = "";
+
+        if(type === "Radio button"){
+            for (i=0; i<parts.length; i++) {
+                var label = document.createElement("label");
+                label.innerText = parts[i];
+
+                var input = document.createElement("input");
+                input.type = "radio"
+                input.name = "idfk"
+
+                label.appendChild(input)
+                here.appendChild(label);
+            }
+        }
+        else{
+            for (i=0; i<parts.length; i++) {
+                var label = document.createElement("label");
+                label.innerText = parts[i];
+
+                var input = document.createElement("input");
+                input.type = "checkbox"
+
+                label.appendChild(input)
+                here.appendChild(label);
+            }
+        }
+
+    }
+</script>
+
+</body>
+</html>

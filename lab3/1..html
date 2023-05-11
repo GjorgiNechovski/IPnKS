@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<label>Vnesi niza (broevi odeleni so zapirka bez prazno mesto): </label> <label>Na primer: 1,2,3,4</label> <br>
+<input id="niza"><br>
+<button onclick="doIt()">I'm done</button>
+
+<script>
+    function doIt() {
+        a = document.getElementById("niza").value;
+        b = [];
+        b = a.split(",");
+
+        for (i=0; i<b.length; i++){
+            for (j=i+1; j<b.length; j++){
+                if(b[i]===b[j])
+                    delete b[j];
+            }
+        }
+        b=b.filter(b=>b!==null);
+
+        console.log(b);
+    }
+</script>
+
+</body>
+</html>

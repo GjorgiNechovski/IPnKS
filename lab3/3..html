@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>Vnesi radius: </label><input id="radius"><br>
+<label>Vnesi visina: </label><input id="visina"><br>
+<button onclick="doIt()">I'm done</button>
+
+<script>
+  function doIt(){
+
+    function Cilindar(radius, visina){
+      this.radius = parseInt(radius);
+      this.visina = parseInt(visina);
+      this.volumen = function (){
+          return this.visina*this.radius*this.radius*Math.PI;
+      };
+    }
+
+    temp = new Cilindar(document.getElementById("radius").value,
+                        document.getElementById("visina").value);
+
+    console.log("Volumenot na cilindarot e: ", temp.volumen());
+
+  }
+</script>
+</body>
+</html>
